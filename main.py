@@ -44,7 +44,7 @@ while True:
         for hand in results.multi_hand_landmarks:
             # Extract Hand ID and Landmark Information
             for id, landmark in enumerate(hand.landmark):
-                print(id, landmark)
+                #print(id, landmark)
                 # Get heigh-width-chanels of image
                 img_height,img_width,img_channels = img.shape
                 # Get center of img coordinates
