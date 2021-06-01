@@ -42,6 +42,18 @@ while True:
     #Extract info 
     if results.multi_hand_landmarks:
         for hand in results.multi_hand_landmarks:
+            # Extract Hand ID and Landmark Information
+            for id, landmark in enumerate(hand.landmark):
+                print(id, landmark)
+                # Get heigh-width-chanels of image
+                img_height,img_width,img_channels = img.shape
+                # Get center of img coordinates
+                center_x, center_y = int(landmark.x * img_width) , int(landmark.y * img_height)
+                
+                # Detect specific points out of the 21 - in this case , just finger tips
+                if id == 4 or id == 8 or id == 12 or id == 16 or id == 20:
+                    cv2.circle(img,(center_x,center_y), radius=7, color=(255,0,252), thickness=cv2.FILLED)
+            
             draw.draw_landmarks(img , hand, mpHands.HAND_CONNECTIONS)
             
     #Get FPS
