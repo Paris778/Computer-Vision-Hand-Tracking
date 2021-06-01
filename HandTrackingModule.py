@@ -5,17 +5,18 @@ import time #for frame rate
 
 class handDetector():
     # Constructor
-    def __init__(self, mode=False, max_hands = 2, detection_conf = 0.5, track_conf = 0.5):
+    def __init__(self, mode=False, max_hands = 2, detection_conf = 0.5, track_conf = 0.5, draw = True):
         self.mode = mode
         self.maxHands = max_hands
         self.detection_conf = detection_conf
         self.track_conf = track_conf
+        self.draw = draw
         
         ###########
         # Variables
         self.mpHands = mp.solutions.hands
         self.hands = self.mpHands.Hands(self.mode,self.maxHands,self.detection_conf,self.track_conf)
-        self.draw = mp.solutions.drawing_utils
+        self.draw_util = mp.solutions.drawing_utils
         self.results = None
 
         self.previous_time = 0
@@ -40,11 +41,11 @@ class handDetector():
         #Extract info 
         if self.results.multi_hand_landmarks:
             for hand in self.results.multi_hand_landmarks:
-                if draw:
-                    self.draw.draw_landmarks(img , hand, self.mpHands.HAND_CONNECTIONS)     
+                if self.draw:
+                    self.draw_util.draw_landmarks(img , hand, self.mpHands.HAND_CONNECTIONS)     
         return img
 
-    def find_poisiton(self, img, hand_Num = 0, draw=True ): 
+    def find_poisiton(self, img, hand_Num = 0): 
         
         landmark_List = []
         
@@ -61,11 +62,16 @@ class handDetector():
                 center_x, center_y = int(landmark.x * img_width) , int(landmark.y * img_height)
                 landmark_List.append([id,center_x,center_y])
                 # Detect specific points out of the 21 - in this case , just finger tips
-                if (id == 4 or id == 8 or id == 12 or id == 16 or id == 20) and draw:
+                if (id == 4 or id == 8 or id == 12 or id == 16 or id == 20) and self.draw:
                     cv2.circle(img,(center_x,center_y), radius=7, color=(255,0,252), thickness=cv2.FILLED)
 
         return landmark_List
 
+    def display_fps(self,img):
+        fps = self.get_fps(self.previous_time,time.time())
+        #Display FPS on screen
+        cv2.putText(img, str(int(fps)), org = (10,40), fontFace=cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, fontScale=1, color=(0,20,255), thickness=2)
+        return img
 #####################################################
 # Main Function
 def main():
@@ -77,11 +83,8 @@ def main():
         success, img = cap.read()
         img = detector.find_Hands(img)
         position = detector.find_poisiton(img)
-        
-        #Get FPS
-        fps = detector.get_fps(detector.previous_time,time.time())
-        #Display FPS on screen
-        cv2.putText(img, str(int(fps)), org = (10,40), fontFace=cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, fontScale=1, color=(0,20,255), thickness=2)
+        img = detector.display_fps(img)
+
         #Show image
         cv2.imshow("Image", img)
         cv2.waitKey(1)
