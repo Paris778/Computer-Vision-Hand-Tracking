@@ -1,2 +1,4 @@
 # Computer-Vision-Hand-Tracking
-Using Google's Mediapipe
+## Dependencies
+- Google's Mediapipe
+- Open CV
