@@ -1,3 +1,4 @@
+from sys import base_prefix
 import cv2
 import HandTrackingModule as htm
 import time
@@ -13,16 +14,31 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 cap = cv2.VideoCapture(0)
 detector = htm.handDetector( detection_conf= 0.7, track_conf= 0.7 , draw = True, show_fps = True)
 
+##########
 # Volume
 
 devices = AudioUtilities.GetSpeakers()
 interface = devices.Activate( IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
-volume.GetMute()
-volume.GetMasterVolumeLevel()
-volume.GetVolumeRange()
-volume.SetMasterVolumeLevel(-20.0, None)
 
+vol_range = volume.GetVolumeRange()
+volume_level = 0
+min_vol = vol_range[0]
+max_vol = vol_range[1]
+
+#############
+# Volume Bar
+
+bar_start_x = 15
+bar_start_y = 120
+bar_end_x = 30
+bar_end_y = 400
+bar_colour = (255,0,0)
+bar_thickness = 3
+volume_bar_height = bar_start_y
+
+###########
+# Main loop
 while True:
     success, img = cap.read()
     img = detector.find_Hands(img)
@@ -44,10 +60,24 @@ while True:
         cv2.circle(img,(cx, cy), radius=7, color=(255,255,0), thickness=cv2.FILLED)
         
         line_length = math.hypot(x2-x1, y2-y1)
-        print(line_length)
         
+        #Convert volume range to line length range
+        volume_level = np.interp(line_length, [20, 210], [min_vol,max_vol])
+        print("Volume : " , volume_level)
+        #Convert into bar dimensions
+        volume_bar_height = np.interp(line_length, [20, 210], [bar_end_y,bar_start_y])
+        print("Volume : " , volume_level)
+        
+        # Set system volume
+        volume.SetMasterVolumeLevel(volume_level, None)
+        
+        #Display green circle when fingers almost touch
         if line_length < 21:
             cv2.circle(img,(cx, cy), radius=7, color=(0,255,0), thickness=cv2.FILLED)
+            
+    # Create volume level rectangle
+    cv2.rectangle(img, (bar_start_x,bar_start_y), (bar_end_x,bar_end_y), color=bar_colour, thickness=bar_thickness)   # Frame
+    cv2.rectangle(img, (bar_start_x,int(volume_bar_height)),(bar_end_x,bar_end_y), color=bar_colour, thickness = cv2.FILLED)
    
     #Show image
     cv2.imshow("Image", img)
