@@ -5,12 +5,13 @@ import time #for frame rate
 
 class handDetector():
     # Constructor
-    def __init__(self, mode=False, max_hands = 2, detection_conf = 0.5, track_conf = 0.5, draw = True):
+    def __init__(self, mode=False, max_hands = 2, detection_conf = 0.5, track_conf = 0.5, draw = True, show_fps = True):
         self.mode = mode
         self.maxHands = max_hands
         self.detection_conf = detection_conf
         self.track_conf = track_conf
         self.draw = draw
+        self.show_fps = show_fps
         
         ###########
         # Variables
@@ -42,7 +43,10 @@ class handDetector():
         if self.results.multi_hand_landmarks:
             for hand in self.results.multi_hand_landmarks:
                 if self.draw:
-                    self.draw_util.draw_landmarks(img , hand, self.mpHands.HAND_CONNECTIONS)     
+                    self.draw_util.draw_landmarks(img , hand, self.mpHands.HAND_CONNECTIONS)    
+        if self.show_fps:
+            return self.display_fps(img)
+        
         return img
 
     def find_poisiton(self, img, hand_Num = 0): 
