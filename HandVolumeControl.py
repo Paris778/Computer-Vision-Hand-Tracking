@@ -14,7 +14,7 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 cap = cv2.VideoCapture(0)
 detector = htm.handDetector( detection_conf= 0.7, track_conf= 0.7 , draw = True, show_fps = True)
 
-##########
+#############
 # Volume
 
 devices = AudioUtilities.GetSpeakers()
@@ -26,8 +26,8 @@ volume_level = 0
 min_vol = vol_range[0]
 max_vol = vol_range[1]
 
-#############
-# Volume Bar
+#########################
+# Volume Bar Variables
 
 bar_start_x = 15
 bar_start_y = 120
@@ -37,7 +37,7 @@ bar_colour = (255,0,0)
 bar_thickness = 3
 volume_bar_height = bar_start_y
 
-###########
+################
 # Main loop
 while True:
     success, img = cap.read()
