@@ -81,14 +81,13 @@ class handDetector():
 def main():
     #initialise video capture object (webcam)
     cap = cv2.VideoCapture(0)
-    detector = handDetector()
+    detector = handDetector(draw = True, show_fps = True)
 
     while True:
         success, img = cap.read()
         img = detector.find_Hands(img)
         position = detector.find_poisiton(img)
-        img = detector.display_fps(img)
-
+        
         #Show image
         cv2.imshow("Image", img)
         cv2.waitKey(1)

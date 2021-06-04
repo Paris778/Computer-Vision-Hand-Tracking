@@ -10,7 +10,7 @@ detector = htm.handDetector(draw = True, show_fps = True)
 while True:
     success, img = cap.read()
     img = detector.find_Hands(img)
-    position = detector.find_poisiton(img)
+    landmark_List = detector.find_poisiton(img)
    
     #Show image
     cv2.imshow("Image", img)
