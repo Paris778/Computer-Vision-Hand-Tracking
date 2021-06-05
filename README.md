@@ -6,7 +6,7 @@ A series of computer vision projects developed in order to increase my experienc
 This repositiory contains two projects and one generalist module which can be imported and used into different projects such as the Hand-Tracked Pong Game: https://github.com/Paris778/Computer-Vision-Pong-Hand-Tracked/
 
 ### Project 1: Finger Counter 
-This project can identify how many fingers are shown to the camera using Google's mediapipe
+This project can identify how many fingers are shown to the camera using Google's mediapipe.
 
 ![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture4.JPG "Title")
 ![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture5.JPG "Title")
