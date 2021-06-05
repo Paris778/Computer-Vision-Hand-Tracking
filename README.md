@@ -17,8 +17,8 @@ If the two fingers touch, the volume is reduced to zero and at max distance the 
 
 ![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture2.JPG "Title")
 ![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture3.JPG "Title")
-### Video
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/RGSIQ5LoKuU/0.jpg)](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/volumeVideo.mp4)
+### Video Demo
+[](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/volumeVideo.mp4)
 
 ## Dependencies 
 
