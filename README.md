@@ -8,9 +8,17 @@ This repositiory contains two projects and one generalist module which can be im
 #### Project 1: Finger Counter 
 This project can identify how many fingers are shown to the camera using Google's mediapipe
 
+![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture4.JPG "Title")
+![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture5.JPG "Title")
+
 #### Project 2: Gesture Volume Control 
 This project allows the user to control the volume of their machine using the distance between their index finger and thumb.
 If the two fingers touch, the volume is reduced to zero and at max distance the volume is at max. It is important to note that the distance of the hand from the camera matters in the volume calculation.
+
+![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture2.JPG "Title")
+![Alt text](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture3.JPG "Title")
+### Video
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/RGSIQ5LoKuU/0.jpg)](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/volumeVideo.mp4)
 
 ## Dependencies 
 
