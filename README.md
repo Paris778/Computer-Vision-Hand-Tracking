@@ -44,6 +44,7 @@ Original repo by AndreMiras : https://github.com/AndreMiras/pycaw
 pip3 install pycaw
 ```
 
-## Screen Shots
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
