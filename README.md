@@ -23,7 +23,9 @@ If the two fingers touch, the volume is reduced to zero and at max distance the 
 ### Video Demo #2
 [![IMAGE ALT TEXT HERE](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/Capture2.JPG)](https://github.com/Paris778/Computer-Vision-Hand-Tracking/blob/main/computer%20vision%20media/volumeVideo.mp4)
 
-## Dependencies 
+## Dependencies & Run
+
+#### Install dependancies:
 
 #### Google mediapipe 
 
@@ -43,6 +45,9 @@ Original repo by AndreMiras : https://github.com/AndreMiras/pycaw
 ```bash
 pip3 install pycaw
 ```
+#### Run
+- Clone repo
+- Open in a text editor (i.e VSCode) and run the python file corresponding to each project
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
